@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol ViewModelProtocol : AnyObject{
+protocol LeaguesViewModelProtocol : AnyObject{
     var leagues : [Leagues] { get set }
     var bindDataToViewController: (()->()) { get set  }
     func getData()
 }
 
-class ViewModel: ViewModelProtocol {
+class LeaguesViewModel: LeaguesViewModelProtocol {
     
     var sport : String
     var leagues : [Leagues] = []

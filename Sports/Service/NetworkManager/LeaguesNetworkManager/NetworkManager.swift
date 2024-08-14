@@ -18,7 +18,7 @@ class NetworkManager : NetworkManagerProtocol {
         let url = URL(string: "https://apiv2.allsportsapi.com/\(sport)")
         guard let url = url else { return }
        // let request = AF.request(url, method: .get , encoding: JSONEncoding.default)
-        let param = ["met" : "Leagues","APIkey" : Constants.apiKey,"country":"kenkdc"]
+        let param = ["met" : "Leagues","APIkey" : Constants.apiKey]
         let request = AF.request(url, method: .get, parameters: param, encoding: URLEncoding.default)
         request.responseData { responseData in
             switch responseData.result {

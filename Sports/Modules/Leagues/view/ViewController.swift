@@ -10,7 +10,7 @@ import Kingfisher
 
 class ViewController: UIViewController {
     
-    var viewModel : ViewModelProtocol?
+    var viewModel : LeaguesViewModelProtocol?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageForEmpty: UIImageView!
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.RegisterNib(cell: TableViewCell.self)
-        viewModel = ViewModel()
+        viewModel = LeaguesViewModel()
         viewModel?.getData()
         viewModel?.bindDataToViewController = { [weak self] in
             guard let self else { return  }
