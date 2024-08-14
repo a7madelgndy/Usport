@@ -28,6 +28,6 @@ class Leagues : Codable {
 }
 
 struct LeaguesResponse: Codable{
-
+    let success : Int
     let result: [Leagues]
 }

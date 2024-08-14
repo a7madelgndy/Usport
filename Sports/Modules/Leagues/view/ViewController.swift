@@ -8,15 +8,10 @@
 import UIKit
 import Kingfisher
 
-protocol ViewControllerProtocol {
-    func fetchData(leagues : [Leagues])
-}
-
 class ViewController: UIViewController {
     
-    var leagues : [Leagues] = []
-    var LNWManager : LeaguesNetworkManagerProtocol?
-
+    var viewModel : ViewModelProtocol?
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageForEmpty: UIImageView!
     
@@ -26,13 +21,18 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.RegisterNib(cell: TableViewCell.self)
-        LNWManager = LeaguesNetworkManager()
-        LNWManager?.getLeaguesFromAPI()
-        isEmpty()
-
+        viewModel = ViewModel()
+        viewModel?.getData()
+        viewModel?.bindDataToViewController = { [weak self] in
+            guard let self else { return  }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.isEmpty()
+            }
+        }
     }
     func isEmpty() {
-        if leagues.count == 0 {
+        if viewModel?.leagues.count == 0 {
             tableView.isHidden = true
             imageForEmpty.isHidden = false
         }else{
@@ -41,31 +41,25 @@ class ViewController: UIViewController {
             
         }
     }
-    func fetchData(leagues : [Leagues]) {
-        self.leagues = leagues
-        self.tableView.reloadData()
-
-    }
-
 }
-
-extension ViewController : UITableViewDelegate,UITableViewDataSource,ViewControllerProtocol {
+extension ViewController : UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return leagues.count
+        return (viewModel?.leagues.count) ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-        let league = leagues[indexPath.row]
-        cell.leagueImage.image = UIImage(named: league.leagueLogo!)
-        cell.leagueName.text = league.leagueName
-        
+        let league = viewModel?.leagues[indexPath.row]
+        let image = URL(string: (league?.leagueLogo) ?? "")
+        cell.leagueImage.kf.setImage(with: image, placeholder: UIImage(named: "noImage"))
+        cell.leagueImage.layer.cornerRadius = cell.leagueImage.frame.width / 2
+        cell.leagueName.text = league?.leagueName
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 70
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -74,24 +68,16 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource,ViewControl
 
 extension  UITableView {
     func RegisterNib<cell : UITableViewCell>(cell : cell.Type) {
-        
-        
         let nibName = String(describing : cell)
-        
         self.register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: nibName)
     }
     
     func dequeue<cell : UITableViewCell>() -> cell {
-        
         _ = String(describing: cell.self)
         guard let cell = self.dequeueReusableCell(withIdentifier: "TableViewCell") as? cell else {
             fatalError("error in cell")
         }
-        
         return cell
     }
-   
-    
-    
 }
 

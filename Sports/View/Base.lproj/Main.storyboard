@@ -8,44 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Sports Collection View Controller-->
-        <scene sceneID="SbF-Ar-ius">
-            <objects>
-                <viewController id="BeQ-P0-N4x" customClass="SportsCollectionViewController" customModule="Sports" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="K8F-dI-XKu">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cZM-UT-wx2">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="plz-FS-z6Y">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="7Wn-Co-yyy"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="cZM-UT-wx2" firstAttribute="top" secondItem="7Wn-Co-yyy" secondAttribute="top" id="Nf4-AJ-ze4"/>
-                            <constraint firstItem="7Wn-Co-yyy" firstAttribute="bottom" secondItem="cZM-UT-wx2" secondAttribute="bottom" id="VH0-1g-XM1"/>
-                            <constraint firstItem="7Wn-Co-yyy" firstAttribute="trailing" secondItem="cZM-UT-wx2" secondAttribute="trailing" id="ddm-5O-bXc"/>
-                            <constraint firstItem="cZM-UT-wx2" firstAttribute="leading" secondItem="7Wn-Co-yyy" secondAttribute="leading" id="tzN-cf-bdA"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="mQI-O1-ZWZ"/>
-                    <connections>
-                        <outlet property="collectionView" destination="cZM-UT-wx2" id="TZc-yA-656"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gre-nS-3Kr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="83.206106870229007" y="-30.281690140845072"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="w7q-Zl-KT2">
             <objects>
@@ -54,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Empty tropical frame" translatesAutoresizingMaskIntoConstraints="NO" id="dwH-YJ-yp7">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="dwH-YJ-yp7">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3uC-Gj-j7m">
@@ -82,29 +44,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pqi-Vl-SoJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="939.69465648854953" y="-30.281690140845072"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="rfS-eN-qK1">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LoB-ZQ-ReF" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dGZ-8m-hrB">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BeQ-P0-N4x" kind="relationship" relationship="rootViewController" id="mfC-CL-S9x"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TXZ-tw-WHJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-843.51145038167931" y="-30.281690140845072"/>
+            <point key="canvasLocation" x="150" y="-35"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Empty tropical frame" width="626" height="938"/>
+        <image name="Image" width="564" height="1002"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
