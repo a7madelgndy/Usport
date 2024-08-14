@@ -38,5 +38,5 @@ class NetworkManager : NetworkManagerProtocol {
     }
 }
 class Constants {
-    static let apiKey = "5314156768edc247cca20a1ffd32df1761e66112a98bd235de51f9c1d13e2d4d"
+    static let apiKey = "2c28d4947373c9aad33c4b48c0f99c79ce4469f4c59f207b0ee9d8f73d2ae9e2"
 }

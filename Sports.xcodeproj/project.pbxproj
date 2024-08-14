@@ -27,6 +27,9 @@
 		05717E722C6AA3E500415BAB /* Leagues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05717E712C6AA3E500415BAB /* Leagues.swift */; };
 		05717E752C6AA44000415BAB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05717E742C6AA44000415BAB /* NetworkManager.swift */; };
 		05D44A2F2C6C1C4C00E328B9 /* AlamofireEasyLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 05D44A2E2C6C1C4C00E328B9 /* AlamofireEasyLogger */; };
+		153615422C6D431400A35652 /* homeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153615412C6D431400A35652 /* homeViewModel.swift */; };
+		153615442C6D432A00A35652 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153615432C6D432A00A35652 /* HomeViewController.swift */; };
+		153615462C6D443000A35652 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153615452C6D443000A35652 /* HomeCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,9 @@
 		05717E6E2C6A9E7E00415BAB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		05717E712C6AA3E500415BAB /* Leagues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leagues.swift; sourceTree = "<group>"; };
 		05717E742C6AA44000415BAB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		153615412C6D431400A35652 /* homeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeViewModel.swift; sourceTree = "<group>"; };
+		153615432C6D432A00A35652 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		153615452C6D443000A35652 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +182,7 @@
 		05717E532C6A9A1000415BAB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1536153E2C6D42C300A35652 /* home */,
 				05717E5E2C6A9B0A00415BAB /* TeamDetails */,
 				05717E5B2C6A9AF400415BAB /* Leagues */,
 			);
@@ -288,6 +295,32 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1536153E2C6D42C300A35652 /* home */ = {
+			isa = PBXGroup;
+			children = (
+				153615402C6D42FA00A35652 /* viewModel */,
+				1536153F2C6D42F400A35652 /* view */,
+			);
+			path = home;
+			sourceTree = "<group>";
+		};
+		1536153F2C6D42F400A35652 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				153615432C6D432A00A35652 /* HomeViewController.swift */,
+				153615452C6D443000A35652 /* HomeCollectionViewCell.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		153615402C6D42FA00A35652 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				153615412C6D431400A35652 /* homeViewModel.swift */,
+			);
+			path = viewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -435,14 +468,17 @@
 			files = (
 				05717E6F2C6A9E7E00415BAB /* ViewController.swift in Sources */,
 				05717E172C6A998F00415BAB /* AppDelegate.swift in Sources */,
+				153615422C6D431400A35652 /* homeViewModel.swift in Sources */,
 				05717E6C2C6A9CA300415BAB /* TableViewCell.swift in Sources */,
 				052C8A7B2C6C01800034F365 /* TeamsViewController.swift in Sources */,
+				153615462C6D443000A35652 /* HomeCollectionViewCell.swift in Sources */,
 				05717E722C6AA3E500415BAB /* Leagues.swift in Sources */,
 				052C8A792C6B97220034F365 /* TeamDetailsViewModel.swift in Sources */,
 				05717E212C6A998F00415BAB /* Sports.xcdatamodeld in Sources */,
 				05717E752C6AA44000415BAB /* NetworkManager.swift in Sources */,
 				052C8A772C6B84770034F365 /* LeaguesViewModel.swift in Sources */,
 				05717E192C6A998F00415BAB /* SceneDelegate.swift in Sources */,
+				153615442C6D432A00A35652 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
