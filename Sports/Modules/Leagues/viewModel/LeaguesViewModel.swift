@@ -15,16 +15,43 @@ protocol LeaguesViewModelProtocol : AnyObject{
 
 class LeaguesViewModel: LeaguesViewModelProtocol {
     
+    //ahmed add this
+    var path:Int
+    //----
     var sport : String
     var leagues : [Leagues] = []
     var networkManager : NetworkManagerProtocol
     var bindDataToViewController: (() -> ()) = {}
     
-    init(sport: String = "football",networkManager: NetworkManagerProtocol = NetworkManager() ){
+    init(sport: String = "football",networkManager: NetworkManagerProtocol = NetworkManager() ,path :Int = 0 ){
         self.sport = sport
         self.networkManager = networkManager
+        self.path = path
+    }
+    //added
+    init(path :Int = 0 ){
+        self.sport = "football"
+        self.networkManager = NetworkManager()
+        self.path = path
+        self.detectSport()
+    }
+    //------
+    func detectSport(){
+        switch path {
+        case 0 :
+            sport = "football"
+        case 1 :
+            sport = "basketball"
+        case 2 :
+            sport = "cricket"
+        case 3 :
+            sport = "tennis"
+        default:
+            sport = "football"
+        }
     }
     func getData() {
+        
         networkManager.getLeaguesFromAPI(sport: sport) {[weak self] leagues in
             guard let self else { return }
             self.leagues = leagues

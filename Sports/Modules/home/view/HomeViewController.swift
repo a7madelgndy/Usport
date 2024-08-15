@@ -6,20 +6,82 @@
 //
 
 import UIKit
+import Network
 
 class HomeViewController: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
+    var noInternetImageView: UIImageView!
+    var monitor: NWPathMonitor?
+    let refreshControl = UIRefreshControl()
 
-    @IBOutlet var collectionVeiw: UICollectionView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        collectionVeiw.delegate = self
-        collectionVeiw.dataSource = self
-        // Do any additional setup after loading the view.
-      
-
-    }
+    @IBOutlet weak var collectionVeiw: UICollectionView!
     
+      override func viewDidLoad() {
+          super.viewDidLoad()
+          collectionVeiw.delegate = self
+          collectionVeiw.dataSource = self
+          
+          setupNoInternetImageView()
+          setupNetworkMonitor()
+          setupRefreshControl()
+      }
 
+      func setupRefreshControl() {
+          refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+          collectionVeiw.refreshControl = refreshControl
+      }
+
+      @objc func refreshData() {
+          monitorNetworkConnection()
+      }
+
+      func monitorNetworkConnection() {
+          monitor?.pathUpdateHandler = { [weak self] path in
+              DispatchQueue.main.async {
+                  if path.status == .satisfied {
+                      // Network is available, hide the noInternetImageView and show the collectionView
+                      self?.noInternetImageView.isHidden = true
+                      self?.collectionVeiw.isHidden = false
+                      self?.fetchData()
+                  } else {
+                      // Network is unavailable, show the noInternetImageView and hide the collectionView
+                      self?.noInternetImageView.isHidden = false
+                      self?.collectionVeiw.isHidden = true
+                      self?.refreshControl.endRefreshing()  // End the refresh control even if there's no internet
+                      self?.showNoNetworkAlert()
+                  }
+              }
+          }
+      }
+
+      func fetchData() {
+          // Simulate network request or perform actual data fetch
+          DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+              // Reload your collection view data here
+              self?.collectionVeiw.reloadData()
+              self?.refreshControl.endRefreshing()  // End the refresh animation
+          }
+      }
+
+      func setupNoInternetImageView() {
+          noInternetImageView = UIImageView(image: UIImage(named: "football.jpg")) // Replace with your no internet image
+          noInternetImageView.contentMode = .scaleAspectFit
+          noInternetImageView.frame = view.bounds
+          noInternetImageView.isHidden = true
+          view.addSubview(noInternetImageView)
+      }
+
+      func setupNetworkMonitor() {
+          monitor = NWPathMonitor()
+          let queue = DispatchQueue(label: "NetworkMonitor")
+          monitor?.start(queue: queue)
+          monitorNetworkConnection()  // Initial check on view load
+      }
+
+      func showNoNetworkAlert() {
+          let alert = UIAlertController(title: "No Internet", message: "Please check your internet connection.", preferredStyle: .alert)
+          alert.addAction(UIAlertAction(title: "OK", style: .default))
+          present(alert, animated: true)
+      }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -66,14 +128,17 @@ class HomeViewController: UIViewController ,UICollectionViewDelegate,UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "leagus", sender: indexPath.row)
     }
-    
+
+   //go to leages view contoller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "leagus" {
-                // Pass data to the destination view controller if needed
-                if segue.destination is ViewController {
+        if segue.identifier == "leagus" {
+            if let vc = segue.destination as? ViewController {
+                if let index = sender as? Int {
+                    vc.index = index 
                 }
             }
         }
+    }
    /* func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter?.didSelectSport(at: indexPath.row)
     }*/

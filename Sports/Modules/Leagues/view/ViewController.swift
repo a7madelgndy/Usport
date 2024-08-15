@@ -14,20 +14,32 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageForEmpty: UIImageView!
-    
+
+ 
+    //this index is send form the the frist view controller
+    var index:Int?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.RegisterNib(cell: TableViewCell.self)
-        viewModel = LeaguesViewModel()
+        
+        //adding indector
+        let networkIndicator = UIActivityIndicatorView(style: .gray)
+        networkIndicator.center = view.center
+        networkIndicator.startAnimating()
+        view.addSubview(networkIndicator)
+        
+        viewModel = LeaguesViewModel(path: index!)
+    
         viewModel?.getData()
         viewModel?.bindDataToViewController = { [weak self] in
             guard let self else { return  }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.isEmpty()
+                //stopr the indector when recevitin the data 
+                networkIndicator.stopAnimating()
             }
         }
     }
